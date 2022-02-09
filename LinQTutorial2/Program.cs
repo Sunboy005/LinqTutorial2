@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace LinQTutorial2
 {
@@ -6,7 +7,23 @@ namespace LinQTutorial2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("************Learning Linq and how it is being used Part 2**************");
+
+
+            Console.WriteLine("************GroupBy==> studentList.GroupBy(x => x.Branch);**************");
+            var studentList = Student.GetStudents();
+            var groupStudent = studentList.GroupBy(x => x.Branch);
+            foreach (var group in groupStudent)
+            {
+                Console.WriteLine("--------");
+                Console.WriteLine(group.Key);
+                Console.WriteLine("--------");
+                foreach (var student in group)
+                {
+                    Console.WriteLine(student.Name);
+                }
+            }
+
         }
     }
 }
