@@ -24,8 +24,7 @@ namespace LinQTutorial2
                 }
             }
 
-            Console.WriteLine(
-                "2. ************GroupByMultipleProperties==> studentList.GroupBy(x => new {x.Branch, x.Gender});**************");
+            Console.WriteLine("2. ************GroupByMultipleProperties==> studentList.GroupBy(x => new {x.Branch, x.Gender});**************");
             var groupStudentByMultipleKeys = studentList.GroupBy(x => new {x.Branch, x.Gender})
                 .OrderByDescending(x=>x.Key.Branch).ThenBy(x=>x.Key.Gender);
             foreach (var group in groupStudentByMultipleKeys)
@@ -36,6 +35,20 @@ namespace LinQTutorial2
                 foreach (var student in group)
                 {
                     Console.WriteLine(student.Name);
+
+                }
+            }
+            Console.WriteLine("3. ************ToLookUp==> studentList.;**************");
+            var groupStudentToLookUp = studentList.ToLookup(x => new { x.Branch });
+            foreach (var group in groupStudentToLookUp)
+            {
+                Console.WriteLine("--------");
+                Console.WriteLine(group.Key);
+                Console.WriteLine("--------");
+                foreach (var student in group)
+                {
+                    Console.WriteLine(student.Name);
+
                 }
             }
         }
