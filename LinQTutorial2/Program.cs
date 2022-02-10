@@ -25,8 +25,8 @@ namespace LinQTutorial2
             }
 
             Console.WriteLine("2. ************GroupByMultipleProperties==> studentList.GroupBy(x => new {x.Branch, x.Gender});**************");
-            var groupStudentByMultipleKeys = studentList.GroupBy(x => new {x.Branch, x.Gender})
-                .OrderByDescending(x=>x.Key.Branch).ThenBy(x=>x.Key.Gender);
+            var groupStudentByMultipleKeys = studentList.GroupBy(x => new { x.Branch, x.Gender })
+                .OrderByDescending(x => x.Key.Branch).ThenBy(x => x.Key.Gender);
             foreach (var group in groupStudentByMultipleKeys)
             {
                 Console.WriteLine("--------");
@@ -38,8 +38,8 @@ namespace LinQTutorial2
 
                 }
             }
-            Console.WriteLine("3. ************ToLookUp==> studentList.;**************");
-            var groupStudentToLookUp = studentList.ToLookup(x => new { x.Branch });
+            Console.WriteLine("3. ************ToLookUp==> studentList.ToLookup(x => x.Branch);**************");
+            var groupStudentToLookUp = studentList.ToLookup(x => x.Branch);
             foreach (var group in groupStudentToLookUp)
             {
                 Console.WriteLine("--------");
@@ -50,6 +50,24 @@ namespace LinQTutorial2
                     Console.WriteLine(student.Name);
 
                 }
+            }
+            Console.WriteLine("4. ************Linq InnerJoin==> studentList.ToLookup(x => x.Branch);**************");
+            var employeeList = Employee.GetAllEmployees();
+            var employeeJoin = employeeList.Join(
+                Address.GetAllAddresses(),  //Inner Data Source
+                employee => employee.AddressId, //Inner Key Selector
+                address => address.ID, //Outer Key selector
+                (employee, address) => new //Projecting the data into a result set
+                {
+                    EmployeeName = employee.Name,
+                    AddressLine = address.AddressLine
+                }).ToList();
+            foreach (var employee in employeeJoin)
+            {
+                
+                    Console.WriteLine($"Name :{employee.EmployeeName}, Address : {employee.AddressLine}");
+
+                
             }
         }
     }
