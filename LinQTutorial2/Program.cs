@@ -70,10 +70,18 @@ namespace LinQTutorial2
 
 
             }
-            Console.WriteLine("5. ************ElementAt==> studentList.ToLookup(x => x.Branch);**************");
+            Console.WriteLine("5. ************ElementAt==> numbers.ElementAt(1);;**************");
             List<int> numbers = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             int meth= numbers.ElementAt(1);
             Console.WriteLine(meth);
+
+            Console.WriteLine("5. ************ElementAt==> list1.SequenceEqual(list2);**************");
+            List<string> cityList1 = new List<string> { "DELHI", "mumbai", "Hyderabad" };
+            List<string> cityList2 = new List<string> { "delhi", "MUMBAI", "Hyderabad" };
+            List<string> cityList3 = new List<string> { "DELHI", "mumbai", "Hyderabad" };
+
+            Console.WriteLine(cityList1.SequenceEqual(cityList2));
+            Console.WriteLine(cityList1.SequenceEqual(cityList3));
         }
     }
 }
