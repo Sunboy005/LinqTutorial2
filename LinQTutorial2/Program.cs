@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace LinQTutorial2
@@ -64,11 +65,15 @@ namespace LinQTutorial2
                 }).ToList();
             foreach (var employee in employeeJoin)
             {
-                
-                    Console.WriteLine($"Name :{employee.EmployeeName}, Address : {employee.AddressLine}");
 
-                
+                Console.WriteLine($"Name :{employee.EmployeeName}, Address : {employee.AddressLine}");
+
+
             }
+            Console.WriteLine("5. ************ElementAt==> studentList.ToLookup(x => x.Branch);**************");
+            List<int> numbers = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            int meth= numbers.ElementAt(1);
+            Console.WriteLine(meth);
         }
     }
 }
